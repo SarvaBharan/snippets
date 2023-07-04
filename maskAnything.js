@@ -1,5 +1,11 @@
-const mask = (str, maskFrom, maskWith = "*") => {
+const maskLast = (str, maskFrom, maskWith = "*") => {
   return [...str].fill(maskWith, maskFrom).join("");
 };
 
-console.log(mask("1234567890", 4, "$"));
+const maskFirst = (str, maskFrom, maskWith = "*") => {
+  const len = str.length;
+  return `${str}`.slice(-maskFrom).padStart(len, maskWith);
+};
+
+console.log(maskLast("1234567890", 4, "$"));
+console.log(maskFirst("1234567890", 4, "$"));
