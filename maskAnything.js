@@ -1,5 +1,4 @@
 const mask = (str, maskFrom, maskWith = "*") => {
-  let len = str.length;
   return [...str].fill(maskWith, maskFrom).join("");
 };
 
