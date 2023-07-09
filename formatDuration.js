@@ -1,4 +1,5 @@
-function formatDuration(ms = 60000000) {
+function formatDuration(ms = 60000) {
+  if (ms < 0) ms = -ms;
   const time = {
     day: Math.floor(ms / 86400000),
     hour: Math.floor(ms / 3600000) % 24,
@@ -9,4 +10,4 @@ function formatDuration(ms = 60000000) {
   return time;
 }
 
-console.log(formatDuration());
+console.log(formatDuration(10240000));
