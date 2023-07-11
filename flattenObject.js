@@ -1,4 +1,5 @@
 function flatten(inp, prefix = "") {
+  /* // Method 1: Using Object.keys
   let flatObj = {};
   Object.keys(inp).map((key) => {
     if (typeof inp[key] == "object") {
@@ -8,7 +9,17 @@ function flatten(inp, prefix = "") {
       flatObj[prefix + key] = inp[key];
     }
   });
-  return flatObj;
+  return flatObj;*/
+  // Method 2: Using Object.entries and reduce
+  return Object.entries(inp).reduce((acc, arr) => {
+    if (typeof arr[1] == "object") {
+      const deepFlattened = flatten(arr[1], arr[0] + "_");
+      Object.assign(acc, deepFlattened);
+    } else {
+      acc[prefix + arr[0]] = arr[1];
+    }
+    return acc;
+  }, {});
 }
 
 const input = {
