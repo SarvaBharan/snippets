@@ -5,5 +5,7 @@ const promisify = (fn) =>
     });
   };
 const delay = promisify((ms, cb) => setTimeout(cb, ms));
-
-delay(3000).then(() => console.log("Hey done!"));
+const delayBy = 3000;
+delay(delayBy).then(() =>
+  console.log(`Hey! executed after ${delayBy / 1000} secs`)
+);
