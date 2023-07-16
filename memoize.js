@@ -1,3 +1,10 @@
+/**
+ * The `memoize` function is a higher-order function that caches the results of a given function and
+ * returns the cached result if the same arguments are provided again.
+ * @param fn - The `fn` parameter is a function that we want to memoize.
+ * @returns The memoize function returns a new function that acts as a memoized version of the original
+ * function passed as an argument.
+ */
 const memoize = (fn) => {
   let cached = {};
   return function (...args) {
