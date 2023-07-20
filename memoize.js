@@ -13,13 +13,13 @@ const memoize = (fn) => {
     let key = String(args);
     if (key in cached) {
       val["cacheFetched"] = ++cacheFetchCount;
-      val[fn] = cached[key];
+      val[args] = cached[key];
       return val;
     }
     let res = fn(...args);
     cached[key] = res;
     val["cacheFetched"] = cacheFetchCount;
-    val[fn] = cached[key];
+    val[args] = cached[key];
     return val;
   };
 };
