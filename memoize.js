@@ -8,19 +8,19 @@
 const memoize = (fn) => {
   let cached = {},
     cacheFetchCount = 0,
-    val = {};
+    res = {};
   return function (...args) {
     let key = String(args);
     if (key in cached) {
-      val["cacheFetched"] = ++cacheFetchCount;
-      val[args] = cached[key];
-      return val;
+      res["cacheFetched"] = ++cacheFetchCount;
+      res[args] = cached[key];
+      return res;
     }
     let res = fn(...args);
     cached[key] = res;
-    val["cacheFetched"] = cacheFetchCount;
-    val[args] = cached[key];
-    return val;
+    res["cacheFetched"] = cacheFetchCount;
+    res[args] = cached[key];
+    return res;
   };
 };
 
