@@ -6,12 +6,28 @@
  * function passed as an argument.
  */
 const memoize = (fn) => {
-  let cached = {};
+  let cached = {},
+    cacheFetchCount = 0,
+    val = {};
   return function (...args) {
     let key = String(args);
-    if (key in cached) return cached[key];
-    let res = fn(args);
+    if (key in cached) {
+      val["cacheFetched"] = ++cacheFetchCount;
+      val[fn] = cached[key];
+      return val;
+    }
+    let res = fn(...args);
     cached[key] = res;
-    return res;
+    val["cacheFetched"] = cacheFetchCount;
+    val[fn] = cached[key];
+    return val;
   };
 };
+
+const sum = (a, b) => a + b;
+let memoizedFn = memoize(sum);
+console.log(memoizedFn(5, 6));
+console.log(memoizedFn(5, 6));
+console.log(memoizedFn(5, 6));
+console.log(memoizedFn(6, 6));
+console.log(memoizedFn(6, 6));
