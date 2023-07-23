@@ -9,6 +9,7 @@
  * number of elements from the original `arr`.
  */
 const chunk = (arr, size) => {
+  // Method 1:
   return arr.reduce((resArr, ele) => {
     const lastChunk = resArr[resArr.length - 1];
     if (!lastChunk || lastChunk.length === size) {
@@ -18,6 +19,8 @@ const chunk = (arr, size) => {
     }
     return resArr;
   }, []);
+
+  // Method 2:
 };
 
 console.log(chunk([1, 2, 3, 4, 5, 6, 7, 8], 2));
