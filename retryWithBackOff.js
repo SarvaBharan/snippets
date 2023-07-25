@@ -1,5 +1,12 @@
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+const num_suffix = {
+  1: "st",
+  2: "nd",
+  3: "rd",
+  4: "th",
+};
+
 /**
  * The function `retryWithBackOff` retries an asynchronous function with an increasing delay between
  * each attempt, up to a maximum number of retries.
@@ -26,8 +33,12 @@ async function retryWithBackOff(
     return await asyncFn();
   } catch (err) {
     await sleep(Math.random() * (2 ** attemptNum * base));
-    console.log("attemptNum :", attemptNum);
     if (++attemptNum > maxRetries) throw err.message;
+    console.log(
+      `Attempting ${attemptNum}${
+        attemptNum > 3 ? num_suffix[4] : num_suffix[attemptNum]
+      } time`
+    );
     return retryWithBackOff(asyncFn, attemptNum, maxRetries, base);
   }
 }
