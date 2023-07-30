@@ -1,4 +1,5 @@
 const { isMainThread, parentPort, Worker } = require("worker_threads");
+const os = require("os");
 
 if (isMainThread) {
   const worker = new Worker(__filename);
@@ -6,6 +7,6 @@ if (isMainThread) {
     console.log(`Result from worker ${res}`);
   });
 } else {
-  const someData = 20;
-  parentPort.postMessage(someData * 5);
+  const someData = [2, 4, 2, 1, 5, 6, 7].sort(() => Math.random() - 0.5);
+  parentPort.postMessage(someData);
 }
