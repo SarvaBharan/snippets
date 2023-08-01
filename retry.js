@@ -5,4 +5,4 @@ const retry = (fn, maxRetries) => {
   }
 };
 
-console.log(retry(() => console.log("tryin'"), 5));
+console.log(retry(() => console.log("retrying"), 5));
