@@ -17,4 +17,4 @@ const renameKeys = (renameObj, obj) => {
 };
 
 const obj = { name: "Chethan", job: "Software Engineer" };
-console.log(renameKeys({ name: "firstName", job: "passion" }, obj));
+console.log(renameKeys({ name: "firstName", job: "passion" }, obj)); // { firstName: 'Chethan', passion: 'Software Engineer' }
